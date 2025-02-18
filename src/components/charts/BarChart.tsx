@@ -19,7 +19,10 @@ export function BarChartLayout(data: any) {
   console.log(data.data);
 
   return (
-    <ChartContainer config={chartConfig} className="z-100 h-32 w-52 -ml-4">
+    <ChartContainer
+      config={chartConfig}
+      className="z-100 h-32 lg:w-52 xl:w-52 2xl:w-52 md:w-52 -ml-4 sm:w-full"
+    >
       <RechartsBarChart data={data.data}>
         <XAxis
           dataKey="month"

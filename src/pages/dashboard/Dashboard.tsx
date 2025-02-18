@@ -7,7 +7,13 @@ const Dashboard = () => {
   return (
     <div className="">
       <NavigationLayout />
-      <div className={`${open ? "dashboard-layout" : "dashboard-layout-full"}`}>
+      <div
+        className={`${
+          open
+            ? "dashboard-layout lg:w-[calc(100%-19rem)] xl:w-[calc(100%-19rem)] 2xl:w-[calc(100%-19rem)] md:w-[calc(100%-19rem)] sm:w-full"
+            : "dashboard-layout-full"
+        }`}
+      >
         <DashboardLayout />
       </div>
     </div>

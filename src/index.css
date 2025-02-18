@@ -243,11 +243,11 @@ body {
   }
 
   .dashboard-layout {
-    @apply lg:left-72 sm:ml-0 md:ml-0 absolute top-20 ;
+    @apply lg:left-72 sm:ml-0 md:ml-0 absolute top-20;
   }
 
   .dashboard-layout-full {
-    @apply left-0 absolute top-20 ;
+    @apply left-0 p-4 absolute top-20 w-full;
   }
 
   /* ===== ADMIN */
@@ -301,7 +301,7 @@ body {
 
   /* Data Table */
   .data-table {
-    @apply z-10 w-full overflow-hidden rounded-lg border border-dark-400 shadow-lg;
+    @apply z-10 w-full overflow-hidden rounded-lg border shadow;
   }
 
   .table-actions {
@@ -433,11 +433,11 @@ body {
   }
 
   .shad-table-row-header {
-    @apply border-b border-dark-400 text-light-200 hover:bg-transparent !important;
+    @apply text-dark-200 hover:bg-transparent !important;
   }
 
   .shad-table-row {
-    @apply border-b border-dark-400 text-light-200 !important;
+    @apply border-b text-dark-200 !important;
   }
 
   .shad-otp {

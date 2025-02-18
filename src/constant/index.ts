@@ -1,0 +1,77 @@
+export const GenderOptions = ["male", "female", "other"];
+
+export type Gender = "male" | "female" | "other";
+
+export const paymentOptions = ["offline", "online"];
+
+export const baseUrl = "http://localhost:5000";
+
+export const AdminDefaultValues = {
+  email: "",
+  hospital: "",
+};
+
+export const IdentificationTypes = [
+  "Birth Certificate",
+  "Driver's License",
+  "Medical Insurance Card/Policy",
+  "Military ID Card",
+  "Aadhar Card",
+  "Passport",
+  //   "Resident Alien Card (Green Card)",
+  "Social Security Card",
+  "State ID Card",
+  "Student ID Card",
+  "Voter ID Card",
+];
+
+export const Doctors = [
+  {
+    image: "/assets/images/dr-green.png",
+    name: "John Green",
+  },
+  {
+    image: "/assets/images/dr-cameron.png",
+    name: "Leila Cameron",
+  },
+  {
+    image: "/assets/images/dr-livingston.png",
+    name: "David Livingston",
+  },
+  {
+    image: "/assets/images/dr-peter.png",
+    name: "Evan Peter",
+  },
+  {
+    image: "/assets/images/dr-powell.png",
+    name: "Jane Powell",
+  },
+  {
+    image: "/assets/images/dr-remirez.png",
+    name: "Alex Ramirez",
+  },
+  {
+    image: "/assets/images/dr-lee.png",
+    name: "Jasmine Lee",
+  },
+  {
+    image: "/assets/images/dr-cruz.png",
+    name: "Alyana Cruz",
+  },
+  {
+    image: "/assets/images/dr-sharma.png",
+    name: "Hardik Sharma",
+  },
+];
+
+export const StatusIcon = {
+  success: "../../assets/icons/check.svg",
+  pending: "../assets/icons/offline.svg",
+  failed: "../assets/icons/cancelled.svg",
+};
+
+export const PaymentStatusIcon = {
+  paid: "/assets/icons/check.svg",
+  "": "/assets/icons/offline.svg",
+  unpaid: "/assets/icons/cancelled.svg",
+};
