@@ -1,17 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Landmark, PiggyBank, ReceiptText } from "lucide-react";
 import { Chart } from "./Chart";
 import { LineChartLayout } from "../charts/LineChart";
 import { DataTable } from "../table/DataTable";
 import { transactions } from "../../lib/db";
 import { columns } from "../table/column";
-import RightSection from "./RIghtSection";
+import RightSection from "./RightSection";
+import { useSelector } from "react-redux";
 
 const DashboardLayout = () => {
+  const user = useSelector((state: any) => state.auth.user);
   return (
     <div className="pr-0 pl-0">
       <div className="sub-header mb-4">Dashboard</div>
       <div className="flex flex-wrap lg:flex-nowrap items-start justify-between w-full">
-        <div className="w-full lg:w-[60%]">
+        <div className="w-full lg:w-[69%]">
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap items-center justify-between mb-4 sm:w-full">
               <Chart
@@ -32,17 +36,19 @@ const DashboardLayout = () => {
             </div>
             <LineChartLayout />
             <div className="mb-4 w-[calc(100%-1rem)]">
-              <DataTable
-                columns={columns()}
-                data={transactions}
-                isPaginationEnabled={false}
-                isHeaderTrue={false}
-              />
+              {user?.role === "ADMIN" && (
+                <DataTable
+                  columns={columns()}
+                  data={transactions}
+                  isPaginationEnabled={false}
+                  isHeaderTrue={false}
+                />
+              )}
             </div>
           </div>
         </div>
         {/* Right section */}
-        <div className="w-full lg:w-[40%]">
+        <div className="w-full lg:w-[30%]">
           <RightSection />
         </div>
       </div>
