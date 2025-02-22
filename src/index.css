@@ -350,6 +350,10 @@ body {
     @apply text-[16px] leading-[20px] font-normal;
   }
 
+  .text-16-bold {
+    @apply text-[16px] leading-[20px] font-bold;
+  }
+
   .text-14-medium {
     @apply text-[14px] leading-[18px] font-medium;
   }
@@ -366,8 +370,16 @@ body {
     @apply text-[12px] leading-[16px] font-semibold;
   }
 
+  .text-12-bold {
+    @apply text-[12px] leading-[16px] font-bold;
+  }
+
   .text-10-regular {
     @apply text-[10px] leading-[12px] font-normal;
+  }
+
+  .text-10-semibold {
+    @apply text-[10px] leading-[12px] font-semibold;
   }
 
 
@@ -565,11 +577,11 @@ body {
 
 
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+} */

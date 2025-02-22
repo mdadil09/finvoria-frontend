@@ -37,10 +37,11 @@ import {
 import logo from "../../assets/Finvoria.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../redux/slices/authSlice";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const user = useSelector((state: any) => state.auth.user);
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -126,6 +127,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             {data.navMain.map((item) => {
+              const isActive = location.pathname.startsWith(item.url);
               if (item.items && item.items.length > 0) {
                 return (
                   <Collapsible
@@ -136,7 +138,14 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                   >
                     <SidebarMenuItem>
                       <CollapsibleTrigger asChild>
-                        <SidebarMenuButton tooltip={item.title}>
+                        <SidebarMenuButton
+                          tooltip={item.title}
+                          className={
+                            isActive
+                              ? "bg-blue-500 text-light-200 hover:bg-blue-500 hover:text-light-200"
+                              : "hover:bg-blue-100"
+                          }
+                        >
                           {item.icon && <item.icon />}
                           <span>
                             {" "}
@@ -151,7 +160,14 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                         <SidebarMenuSub>
                           {item.items.map((subItem) => (
                             <SidebarMenuSubItem key={subItem.title}>
-                              <SidebarMenuSubButton asChild>
+                              <SidebarMenuSubButton
+                                asChild
+                                className={
+                                  isActive
+                                    ? "bg-blue-500 text-light-200 hover:bg-blue-500 hover:text-light-200"
+                                    : "hover:bg-blue-100"
+                                }
+                              >
                                 <a href={subItem.url}>
                                   <span>{subItem.title}</span>
                                 </a>
@@ -166,7 +182,14 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
               }
               return (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    className={
+                      isActive
+                        ? "bg-blue-500 text-light-200 hover:bg-blue-500 hover:text-light-200"
+                        : "hover:bg-blue-100"
+                    }
+                  >
                     {item.icon && <item.icon />}
                     <a href={`${item.url}?userId=${data.user._id}`}>
                       <span>{item.title}</span>

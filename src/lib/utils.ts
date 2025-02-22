@@ -69,3 +69,54 @@ export function formatDate(dateString: string) {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", options);
 }
+
+export function formatDateTodayYesterdayOrShort(input: string) {
+  const date = typeof input === "string" ? new Date(input) : input;
+  const now = new Date();
+
+  // 2) Zero out hours/minutes/seconds for both dates (to compare calendar days)
+  const today: any = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const thatDay: any = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  );
+
+  // 3) Calculate difference in days (positive, negative, or zero)
+  const msInADay = 24 * 60 * 60 * 1000;
+  const dayDiff = (thatDay - today) / msInADay; // e.g. 0 for same day, -1 for yesterday
+
+  // 4) Build a 12-hour time string: "4:00 PM"
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12; // 0 => 12 (midnight/noon)
+  const timeString = `${hours}:${minutes} ${ampm}`;
+
+  // 5) Decide which label to use based on day difference
+  if (dayDiff === 0) {
+    return `Today at ${timeString}`;
+  } else if (dayDiff === -1) {
+    return `Yesterday at ${timeString}`;
+  } else {
+    // Format: "DD MMM at HH:MM AM/PM" (e.g., "18 Feb at 4:00 PM")
+    const day = date.getDate();
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const shortMonth = monthNames[date.getMonth()];
+
+    return `${day} ${shortMonth} at ${timeString}`;
+  }
+}

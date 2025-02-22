@@ -1,5 +1,3 @@
-"use client";
-
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 import { Card, CardContent, CardHeader } from "../../components/ui/card";
 import {
@@ -10,12 +8,12 @@ import {
 } from "../../components/ui/chart";
 import {
   DropdownMenu,
+  DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
 
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },

@@ -8,6 +8,8 @@ import { transactions } from "../../lib/db";
 import { columns } from "../table/column";
 import RightSection from "./RightSection";
 import { useSelector } from "react-redux";
+import ProgressBar from "./ProgressBar";
+import PieChartLayout from "./PieChartLayout";
 
 const DashboardLayout = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -43,6 +45,12 @@ const DashboardLayout = () => {
                   isPaginationEnabled={false}
                   isHeaderTrue={false}
                 />
+              )}
+              {user?.role === "USER" && (
+                <div className="flex justify-between items-center w-full">
+                  <ProgressBar />
+                  <PieChartLayout />
+                </div>
               )}
             </div>
           </div>
