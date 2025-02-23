@@ -358,6 +358,10 @@ body {
     @apply text-[14px] leading-[18px] font-medium;
   }
 
+  .text-14-bold {
+    @apply text-[14px] leading-[18px] font-bold;
+  }
+
   .text-14-regular {
     @apply text-[14px] leading-[18px] font-normal;
   }

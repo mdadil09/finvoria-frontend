@@ -47,7 +47,7 @@ const DashboardLayout = () => {
                 />
               )}
               {user?.role === "USER" && (
-                <div className="flex justify-between items-center w-full">
+                <div className="flex flex-wrap justify-between items-center w-full sm:w-full">
                   <ProgressBar />
                   <PieChartLayout />
                 </div>

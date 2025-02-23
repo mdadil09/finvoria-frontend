@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import RecentActivity from "./RecentActivity";
 import { useState } from "react";
 import PaymentDialog from "../Dialog/PaymentDialog";
+import visa from "../../assets/visa.svg";
 
 const Wallet = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -44,8 +45,8 @@ const Wallet = () => {
             <div className="text-18-semibold text-light-200 absolute left-4 bottom-4 -mt-2">
               ₹24,098.00
             </div>
-            <div className="text-24-bold absolute bottom-4 right-4 text-light-200">
-              Visa
+            <div className="absolute bottom-4 right-4">
+              <img src={visa} alt="visa" className="h-auto z-50 max-w-14" />
             </div>
           </div>
           <div className="flex justify-between items-center mt-[6%] w-full">

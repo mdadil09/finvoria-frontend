@@ -18,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
+import { getInitials } from "../../lib/utils";
 
 interface userBadgeType {
   id: string;
@@ -26,13 +27,15 @@ interface userBadgeType {
   user: { name: string; email: string; profilePicture: any; role: string };
 }
 
-const ProfileMenu = ({ userBadge, id, handleLogOut, user }: userBadgeType) => {
+const ProfileMenu = ({ handleLogOut, user }: userBadgeType) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center -mr-4">
         <Avatar className="h-8 w-8 rounded-full mr-2">
           <AvatarImage src={user.profilePicture} alt={"user"} />
-          <AvatarFallback className="rounded-full">CN</AvatarFallback>
+          <AvatarFallback className="rounded-full">
+            {getInitials(user?.name)}
+          </AvatarFallback>
         </Avatar>
         <div className="grid flex-1 text-left text-sm leading-tight">
           <span className="truncate font-semibold">{user.name}</span>
@@ -49,7 +52,9 @@ const ProfileMenu = ({ userBadge, id, handleLogOut, user }: userBadgeType) => {
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
               <AvatarImage src={user.profilePicture} alt={user.name} />
-              <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <AvatarFallback className="rounded-lg">
+                {getInitials(user?.name)}
+              </AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">{user.name}</span>

@@ -120,3 +120,17 @@ export function formatDateTodayYesterdayOrShort(input: string) {
     return `${day} ${shortMonth} at ${timeString}`;
   }
 }
+
+export const getFormattedName = (fullName: string) => {
+  const nameParts = fullName.split(" ");
+  const firstName = nameParts[0];
+  const lastNameInitial = nameParts.length > 1 ? nameParts[1][0] + "." : "";
+  return `${firstName} ${lastNameInitial}`;
+};
+
+export const getInitials = (fullName: string) => {
+  const nameParts = fullName.split(" ");
+  const firstInitial = nameParts[0] ? nameParts[0][0].toUpperCase() : "";
+  const lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : "";
+  return `${firstInitial}${lastInitial}`;
+};
