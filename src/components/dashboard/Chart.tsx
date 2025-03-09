@@ -18,7 +18,7 @@ export function Chart({
   icon: JSX.Element;
 }) {
   return (
-    <Card className="h-48 lg:w-[31%] xl:w-[31%] 2xl:w-[31%] md:w-56 mr-4 flex flex-col sm:w-full">
+    <Card className="h-48 w-full lg:w-[31%] xl:w-[31%] 2xl:w-[31%] md:w-56 mr-4 flex flex-col sm:w-full mb-4 sm:mb-0">
       <CardHeader className="p-2">
         <div className="flex justify-between items-center">
           <div>

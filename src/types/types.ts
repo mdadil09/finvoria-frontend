@@ -7,6 +7,7 @@ export enum FormFieldType {
   SELECT = "select",
   SKELETON = "skeleton",
   PASSWORD = "password",
+  CARD_NUMBER = "text",
 }
 
 export interface User {

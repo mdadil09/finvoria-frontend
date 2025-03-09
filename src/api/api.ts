@@ -90,3 +90,48 @@ export const login = async ({ email, password }: loginProps) => {
     toast.error(error?.response?.data?.message);
   }
 };
+
+export const addContact = async (formData: FormData, token: any) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    console.log("FormData:", Object.fromEntries(formData.entries())); // Debugging step
+
+    const res = await axios.post(
+      `${baseUrl}/contact/add-contact`,
+      formData,
+      config
+    );
+
+    return res.data;
+  } catch (error: any) {
+    console.log(error);
+    toast.error(error?.response?.data?.message);
+  }
+};
+
+export const getContacts = async (userId: any, token: any, page: any) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const res = await axios.get(
+      `${baseUrl}/contact/get-contacts/${userId}?page=${page}&limit=5`,
+      config
+    );
+
+    return res;
+  } catch (error: any) {
+    console.log(error);
+    toast.error(error?.response?.data?.message);
+  }
+};

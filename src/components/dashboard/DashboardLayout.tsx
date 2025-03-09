@@ -14,7 +14,7 @@ import PieChartLayout from "./PieChartLayout";
 const DashboardLayout = () => {
   const user = useSelector((state: any) => state.auth.user);
   return (
-    <div className="pr-0 pl-0">
+    <div className="pl-4 pr-0 sm:pl-0 sm:pr-0">
       <div className="sub-header mb-4">Dashboard</div>
       <div className="flex flex-wrap lg:flex-nowrap items-start justify-between w-full">
         <div className="w-full lg:w-[69%]">

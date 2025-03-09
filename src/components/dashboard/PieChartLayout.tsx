@@ -5,7 +5,7 @@ import { PieChart } from "../charts/PieChart";
 
 const PieChartLayout = () => {
   return (
-    <Card className="flex-1 ml-2">
+    <Card className="flex-1 ml-0 sm:ml-2">
       <CardHeader>
         <div className="flex justify-between items-center">
           <div className="text-18-bold text-dark-200">Statistics</div>

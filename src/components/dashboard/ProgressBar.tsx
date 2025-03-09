@@ -12,7 +12,7 @@ import { Progress } from "../ui/progress";
 
 const ProgressBar = () => {
   return (
-    <Card className="flex-1">
+    <Card className="flex-1 mb-4 sm:mb-0">
       <CardHeader>
         <div className="flex justify-between items-center">
           <div className="text-18-bold text-dark-200">Saving</div>

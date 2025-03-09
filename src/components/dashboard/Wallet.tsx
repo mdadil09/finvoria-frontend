@@ -26,7 +26,7 @@ const Wallet = () => {
   return (
     <div>
       <PaymentDialog open={open} setOpen={setOpen} />
-      <Card className="h-[80%] flex flex-col">
+      <Card className="h-[80%] flex flex-col mr-4 sm:mr-0">
         <CardHeader>
           <div className="flex item-center justify-between">
             <div className="text-18-bold text-dark-200">Wallet</div>

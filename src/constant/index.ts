@@ -11,6 +11,21 @@ export const AdminDefaultValues = {
   hospital: "",
 };
 
+export const ContactDefaultValues = {
+  name: "",
+  email: "",
+  phone: "",
+  image: [],
+};
+
+export const PaymentDefaultValues = {
+  cardNumber: "",
+  expory: "",
+  cvv: "",
+  upiId: "",
+  bank: "",
+};
+
 export const IdentificationTypes = [
   "Birth Certificate",
   "Driver's License",

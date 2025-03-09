@@ -67,7 +67,7 @@ const CustomLegend = () => {
 
 export function LineChartLayout() {
   return (
-    <Card className="h-72 w-[calc(100%-1rem)]">
+    <Card className="h-80 sm:h-72 w-[calc(100%-1rem)]">
       {/* ✅ Properly Aligned Header */}
       <CardHeader>
         <div className="flex justify-between items-center">
