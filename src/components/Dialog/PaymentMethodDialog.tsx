@@ -18,7 +18,8 @@ import creditcard from "../../assets/icons/cred-card.png";
 import upi from "../../assets/icons/upi.png";
 import netBank from "../../assets/icons/internet-banking.png";
 import wallet from "../../assets/icons/wallet-banking.png";
-import CardForm from "../forms/payments/CardForm";
+import AddNewPaymentMethod from "../forms/payments/AddNewPaymentMethod";
+import Wallet from "../forms/payments/Wallet";
 
 const PaymentMethodDialog = ({
   open,
@@ -30,7 +31,9 @@ const PaymentMethodDialog = ({
   const user = useSelector((state: any) => state.auth.user);
   const token = useSelector((state: any) => state.auth.token);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState("card");
+  const [selectedMethod, setSelectedMethod] = useState<
+    "card" | "upi" | "netbanking" | "wallet"
+  >("card");
 
   const methods = [
     { id: "card", label: "Card", icon: creditcard },
@@ -56,11 +59,15 @@ const PaymentMethodDialog = ({
             />
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <div className="flex justify-between items-center bg-blue-300 rounded-r-lg rounded-l-lg">
+            <div className="flex w-full flex-wrap justify-between items-center bg-blue-300 rounded-r-lg rounded-l-lg">
               {methods.map((method) => (
                 <button
                   key={method.id}
-                  onClick={() => setSelectedMethod(method.id)}
+                  onClick={() =>
+                    setSelectedMethod(
+                      method.id as "card" | "upi" | "netbanking" | "wallet"
+                    )
+                  }
                   className={`flex items-center text-light-200
             py-2 px-4 ${selectedMethod === method.id ? "rounded-lg" : ""}
             ${selectedMethod === method.id ? "bg-blue-500" : ""}
@@ -78,7 +85,10 @@ const PaymentMethodDialog = ({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="flex justify-between item-center mt-4">
-          {selectedMethod && <CardForm type={selectedMethod} />}
+          {selectedMethod != "wallet" && (
+            <AddNewPaymentMethod type={selectedMethod} />
+          )}
+          {selectedMethod === "wallet" && <Wallet />}
         </div>
       </AlertDialogContent>
     </AlertDialog>

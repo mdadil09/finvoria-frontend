@@ -218,7 +218,7 @@ const PaymentDialog = ({
               Add <Plus className="h-4" />
             </button>
           </div>
-          <div className="flex justify-between items-start mt-4 w-full">
+          <div className="flex flex-wrap justify-between items-start mt-4 w-full">
             <div className="flex flex-col items-center flex-1">
               {cardDetails?.map((item, index) => {
                 const isSelected = item.cardType == selectPaymentType;

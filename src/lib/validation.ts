@@ -159,9 +159,10 @@ export const cardvalidation = z.object({
   expiry: z.string().regex(/^(\d{2})\/(\d{2}|\d{4})$/, {
     message: "Expiry must be in MM/YY or MM/YYYY format.",
   }),
-  cvv: z.string().regex(/^\d{3,4}$/, {
+  cvc: z.string().regex(/^\d{3,4}$/, {
     message: "CVV must be 3 or 4 digits.",
   }),
+  cardHolderName: z.string().min(1, "Name is required"),
 });
 
 export const upiSchema = z.object({
@@ -170,13 +171,36 @@ export const upiSchema = z.object({
     .regex(/^.+@.+$/, "UPI ID must be in 'username@bank' format"),
 });
 
-export const netBankingSchemaFreeText = z.object({
-  bank: z.string().nonempty("Please select or enter your bank name."),
-});
+export const netBankingSchemaFreeText = z
+  .object({
+    bankName: z.string().nonempty("Please select or enter your bank name."),
+    ifcsCode: z.string().nonempty("IFSC code is required."),
+    accountType: z.string().nonempty("Please select your account type."),
+    accountHolderName: z.string().nonempty("Account holder name is required."),
+    accountNumber: z.string().nonempty("Account number is required."),
+    confirmAccountNumber: z
+      .string()
+      .nonempty("Please confirm your account number."),
+    privacyConsent: z
+      .boolean()
+      .default(false)
+      .refine((value) => value === true, {
+        message: "You must consent to privacy in order to proceed",
+      }),
+  })
+  .superRefine(({ accountNumber, confirmAccountNumber }, ctx) => {
+    if (accountNumber !== confirmAccountNumber) {
+      ctx.addIssue({
+        path: ["confirmAccountNumber"],
+        message: "Account numbers do not match.",
+        code: z.ZodIssueCode.custom,
+      });
+    }
+  });
 
 export function getPaymentMethodSchema(type: string) {
   switch (type) {
-    case "net banking":
+    case "netbanking":
       return netBankingSchemaFreeText;
     case "upi":
       return upiSchema;
@@ -184,6 +208,12 @@ export function getPaymentMethodSchema(type: string) {
       return cardvalidation;
   }
 }
+
+export const walletSchema = z.object({
+  walletId: z.string().nonempty("Please enter your wallet ID."),
+  otp: z.string().optional(),
+  walletName: z.string().optional(),
+});
 
 export const selectPaymentMethod = z.object({
   paymentMode: z.string().min(2, "Select at least one payment mode"),

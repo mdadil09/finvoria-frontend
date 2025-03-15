@@ -135,3 +135,76 @@ export const getContacts = async (userId: any, token: any, page: any) => {
     toast.error(error?.response?.data?.message);
   }
 };
+
+export const getBank = async (token: string) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const res = await axios.get(`${baseUrl}/bank/get-banks`, config);
+    return res;
+  } catch (error: any) {
+    console.log(error);
+    toast.error(error?.response?.data?.message);
+  }
+};
+
+export const addPaymentMethod = async (
+  formData: FormData,
+  token: any,
+  type: any,
+  userId: any
+) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const jsonData = {
+      userId,
+      type,
+      details: Object.fromEntries(formData.entries()), // Convert FormData to JSON
+    };
+
+    console.log("FormData:", Object.fromEntries(formData.entries()));
+
+    const res = await axios.post(
+      `${baseUrl}/payment-method/add-payment-method`,
+      jsonData,
+      config
+    );
+
+    return res.data;
+  } catch (error: any) {
+    console.log(error);
+    toast.error(error?.response?.data?.message);
+  }
+};
+
+export const sendWalletOtp = async (walletId: any, token: any) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const res = await axios.post(
+      `${baseUrl}/payment-method/send-otp`,
+      { walletId },
+      config
+    );
+
+    return res.data;
+  } catch (error: any) {
+    console.log(error);
+    toast.error(error?.response?.data?.message);
+  }
+};

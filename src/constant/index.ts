@@ -20,8 +20,9 @@ export const ContactDefaultValues = {
 
 export const PaymentDefaultValues = {
   cardNumber: "",
-  expory: "",
-  cvv: "",
+  holderName: "",
+  expiry: "",
+  cvc: "",
   upiId: "",
   bank: "",
 };

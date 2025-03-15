@@ -33,6 +33,10 @@ interface CustomProps {
   showTimeSelect?: boolean;
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
+  type?: string;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -44,6 +48,10 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     showTimeSelect,
     dateFormat,
     renderSkeleton,
+    type,
+    onFocus,
+    onChange,
+    className,
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -63,8 +71,14 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
           <FormControl>
             <Input
               placeholder={placeholder}
+              type={type}
               {...field}
-              className="shad-input border-0"
+              className={`${!className ? "shad-input border-0" : className}`}
+              onFocus={onFocus}
+              onChange={(e) => {
+                field.onChange(e);
+                onChange?.(e);
+              }}
             />
           </FormControl>
         </div>

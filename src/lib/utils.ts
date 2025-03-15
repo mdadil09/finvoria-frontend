@@ -136,3 +136,26 @@ export const getInitials = (fullName: string) => {
   const lastInitial = nameParts.length > 1 ? nameParts[1][0].toUpperCase() : "";
   return `${firstInitial}${lastInitial}`;
 };
+
+export const formatCardNumber = (value: string) => {
+  return value
+    .replace(/\D/g, "")
+    .replace(/(\d{4})/g, "$1 ")
+    .trim();
+};
+
+export const formatExpiry = (value: string) => {
+  return value
+    .replace(/\D/g, "")
+    .replace(/(\d{2})(\d{0,2})/, "$1/$2")
+    .trim();
+};
+
+export const formatCVC = (value: string) => {
+  return value.replace(/\D/g, "").slice(0, 4);
+};
+
+export const formatUPI = (value: string) => {
+  const upiRegex = /^[a-zA-Z0-9.\-_]+@[a-zA-Z]+$/;
+  return upiRegex.test(value) ? value : "";
+};
